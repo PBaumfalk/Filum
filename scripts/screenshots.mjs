@@ -147,6 +147,15 @@ try {
   await page.goto(`${ADMIN}/einstellungen/team`);
   await shot('team');
 
+  // Dunkelmodus (folgt der Systemeinstellung)
+  const dark = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2, locale: 'de-DE', timezoneId: 'Europe/Berlin', colorScheme: 'dark', storageState: await ctx.storageState() });
+  const dp = await dark.newPage();
+  await dp.goto(`${ADMIN}/analyse`);
+  await dp.getByText('24 Std.').click();
+  await dp.waitForLoadState('networkidle');
+  await dp.screenshot({ path: `${OUT}/analyse-dunkel.png` });
+  await dark.close();
+
   // Öffentliche Vorschauseite (über den Host-Header abgerufen, im Browser dargestellt)
   const preview = await hit('/herbst+');
   const pv = await ctx.newPage();

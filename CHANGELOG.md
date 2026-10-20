@@ -2,6 +2,12 @@
 
 Alle nennenswerten Änderungen an Filum. Format nach [Keep a Changelog](https://keepachangelog.com/de/1.1.0/), Versionen nach [Semantic Versioning](https://semver.org/lang/de/). Datenbankmigrationen laufen beim Start automatisch, vorher legt Filum eine Sicherung an.
 
+## [Unveröffentlicht]
+
+### Dokumentation
+- README neu geschrieben: Nutzen und Zielgruppe zuerst, Installation in aufklappbaren Wegen („Ausprobieren in einer Minute“ mit `docker run`, Server mit Compose), Funktionsüberblick mit Verweisen auf die Handbuchkapitel, Bildschirmfoto im Dunkelmodus, Lizenzen der mitgelieferten Schriften und Symbole.
+- Handbuch Kapitel 2: Umschalten zwischen hell und dunkel.
+
 ## [1.1.0] – 2026-10-20
 
 ### Neu

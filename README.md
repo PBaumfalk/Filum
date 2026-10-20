@@ -1,34 +1,44 @@
-<img src="src/web/public/favicon.svg" width="64" alt="Filum">
+<img src="src/web/public/favicon.svg" width="72" alt="Filum">
 
 # Filum
 
-[![CI](https://github.com/PBaumfalk/Filum/actions/workflows/ci.yml/badge.svg)](https://github.com/PBaumfalk/Filum/actions/workflows/ci.yml)
+[![Tests, Image & Release](https://github.com/PBaumfalk/Filum/actions/workflows/ci.yml/badge.svg)](https://github.com/PBaumfalk/Filum/actions/workflows/ci.yml)
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-blue.svg)](LICENSE)
 [![Docker-Image](https://img.shields.io/badge/ghcr.io-pbaumfalk%2Ffilum-blue?logo=docker)](https://ghcr.io/pbaumfalk/filum)
 
-**Kurzlinks, eigene Domains und ehrliche Statistik, auf dem eigenen Server.**
+**Kurzlinks auf der eigenen Domain, die auch gedruckt verlässlich bleiben, mit ehrlicher Statistik und ohne Cloud.** Filum ist ein kostenloses Link-Management-Studio für Unternehmen, Kanzleien, Vereine und Verwaltungen: Aus `https://www.firma.de/veranstaltungen/2026/sommerfest/anmeldung?formular=4711` wird `go.firma.de/sommerfest`, passend für Flyer, Plakate, QR-Codes, E-Mails und Folien. Zieht die Seite um, ändern Sie in Filum das Ziel, und jeder gedruckte Link führt weiter an die richtige Stelle.
 
-Filum ist ein selbst gehostetes Link-Management-Studio. Lange Adresse einfügen, Enter: Der Kurzlink liegt in der Zwischenablage. Dahinter steckt, was professionelle Linkverwaltung braucht: mehrere Domains, Kampagnen mit UTM-Parametern, Zeitpläne, Passwortschutz, Regeln nach Gerät, Sprache oder Uhrzeit, A/B-Varianten, QR-Codes, Import und Export, eine REST-API, Rollen und OIDC-Anmeldung. Ohne Cloud, ohne Abo, ohne Tracking durch Dritte.
+Filum läuft auf **Ihrem eigenen Server**: ohne Abo, ohne Konto bei einem Anbieter, ohne Tracking durch Dritte. Gezählt werden Aufrufe, keine Personen; IP-Adressen und Cookies von Besuchern speichert Filum nicht.
 
-*Filum* ist lateinisch für **Faden**. Ein Kurzlink ist der rote Faden zwischen einer kurzen Adresse und ihrem Ziel: Er bleibt derselbe, auch wenn sich das Ziel ändert, und man kann ihm jederzeit folgen. Das Schwesterprojekt im Intranet heißt Tessera, „Mosaiksteinchen“.
+*Filum* ist lateinisch für **Faden**: der Faden zwischen einer kurzen Adresse und ihrem Ziel, der derselbe bleibt, auch wenn sich das Ziel ändert.
 
-> **English abstract:** Self-hosted link management studio: short links on your own domains, campaigns with UTM parameters, schedules, password protection, device/language/time rules, A/B variants, QR codes, import/export, REST API, roles and OIDC login. Privacy-friendly aggregate-only statistics (no IPs, no cookies). Node.js 24, Fastify, SQLite, React; ships as one Docker image (amd64/arm64) with redirects and admin strictly separated on two ports. UI and documentation are in German.
+> **English abstract** — Self-hosted link management studio: short links on your own domains, campaigns with UTM parameters, schedules, password protection, device/language/time rules, A/B variants, QR codes with scan attribution, import/export, REST API, roles and OIDC login. Privacy-friendly aggregate-only statistics (no IPs, no visitor cookies). Node.js 24, Fastify, SQLite, React; ships as one Docker image (amd64/arm64) with redirects and admin strictly separated on two ports. UI and documentation are in German.
 
 ![Linkliste mit geöffnetem Link-Editor](docs/screenshots/link-editor.png)
 
-## Was Filum besonders macht
+## 📖 Handbuch
 
-- **Schneller Anfang:** Einfügen, Enter, fertig und kopiert. Mehrere Adressen auf einmal. Lesezeichen „Mit Filum kürzen“. Hinweis, wenn es für ein Ziel schon einen Link gibt.
-- **Gedruckte Links bleiben verlässlich:** Gelöschte Kurzadressen werden nie neu vergeben. Links lassen sich als *verteilt* schützen. Jede Zieländerung steht im Verlauf und lässt sich mit einem Klick zurückholen.
-- **Saubere Weiterleitungen:** 302 als Standard, 301/308 mit begrenztem Browser-Cache; Links mit Zeitplan, Regeln, Limit oder Passwort werden automatisch temporär ausgeliefert, damit kein Browser ein veraltetes Ziel festhält. Rund 46 000 Weiterleitungen pro Sekunde in einem Prozess.
-- **Vertipper-Radar:** zeigt Kurzadressen, die aufgerufen werden, aber nicht existieren, etwa weil ein Flyer falsch abgetippt wird, und leitet sie mit einem Klick auf den gemeinten Link.
-- **Zielprüfung:** Filum prüft regelmäßig, ob Ziele noch erreichbar sind, und meldet gestörte Links, über einen gegen SSRF gehärteten Abruf.
-- **QR mit Herkunft:** Codes enthalten auf Wunsch `?qr`. Filum entfernt das vor der Weiterleitung und zeigt, wie viele Besucher über das Plakat kamen. Gestaltung übernimmt bei Bedarf Tessera.
-- **Datensparsame Statistik:** nur Summen, keine IP-Adressen, keine Cookies bei Besuchern, keine Profile. Drei Stufen (aus, Grund, erweitert), Aufbewahrungsfristen, Löschen auf Knopfdruck und ein passender Textbaustein für die Datenschutzerklärung.
-- **Vorschau für Empfänger:** `go.firma.de/abc+` zeigt das Ziel, statt weiterzuleiten, mit Meldemöglichkeit bei Missbrauch.
-- **Getrennte Welten:** Kurzlinks und Verwaltung laufen auf zwei Ports. Über eine Kurzlink-Domain ist die Verwaltung technisch nicht erreichbar.
+Die vollständige Dokumentation, verständlich für alle, die Links anlegen, wie für die IT, steht im **[Handbuch](docs/handbuch/README.md)**: 23 Kapitel mit Bildschirmfotos, vom [Schnelleinstieg](docs/handbuch/README.md#schnelleinstieg-in-5-minuten) über [Links anlegen](docs/handbuch/03-links-anlegen.md), [Zeitplan, Schutz und Regeln](docs/handbuch/05-zeitplan-schutz-regeln.md) und die [Analyse](docs/handbuch/08-analyse.md) bis zu [Installation](docs/handbuch/13-installation.md), [Sicherung](docs/handbuch/17-sicherung.md) und [REST-API](docs/handbuch/19-rest-api.md).
 
-## Schnellstart
+## Installation
+
+Filum ist eine Server-Anwendung: Sie wird einmal installiert, und alle im Team nutzen sie im Browser.
+
+<details>
+<summary><strong>🧪 Ausprobieren in einer Minute</strong> (auf dem eigenen Rechner mit Docker Desktop)</summary>
+
+```bash
+docker run -d --name filum -p 8080:8080 -p 8081:8081 \
+  -e DEFAULT_DOMAIN=localhost:8080 -v filum-data:/data \
+  ghcr.io/pbaumfalk/filum:1
+docker logs filum        # zeigt den Einrichtungscode
+```
+
+Dann <http://localhost:8081> öffnen, Einrichtungscode eingeben, Konto anlegen und den ersten Link kürzen. Die Kurzlinks lauten hier `http://localhost:8080/…`. Wieder entfernen: `docker rm -f filum && docker volume rm filum-data`.
+</details>
+
+<details>
+<summary><strong>🖥️ Auf einem Server</strong> (für die IT: Docker Compose hinter einem Reverse Proxy)</summary>
 
 ```bash
 git clone https://github.com/PBaumfalk/Filum.git && cd Filum
@@ -37,48 +47,67 @@ docker compose up -d --build  # Docker Compose 2.24 oder neuer
 docker compose logs filum     # Einrichtungscode ablesen
 ```
 
-Ohne eigenes Bauen: in `.env` `FILUM_IMAGE=ghcr.io/pbaumfalk/filum:1` setzen und `docker compose up -d` (ohne `--build`) aufrufen. Fertige Images für amd64 und arm64 entstehen bei jedem Release.
+Ohne eigenes Bauen: in `.env` `FILUM_IMAGE=ghcr.io/pbaumfalk/filum:1` setzen und `docker compose up -d` aufrufen. Fertige Images für amd64 und arm64 entstehen bei jedem Release.
 
-Dann `APP_URL` im Browser öffnen, Einrichtungscode eingeben, erstes Konto anlegen. Ausführlich: [Handbuch, Kapitel 13](docs/handbuch/13-installation.md).
+Filum trennt Besucher und Verwaltung auf zwei Ports:
 
-| Port | Inhalt | Proxy-Ziel für |
+| Port | Inhalt | Im Reverse Proxy für |
 | --- | --- | --- |
-| 8080 | nur Kurzlink-Weiterleitungen | Kurzlink-Domains, z. B. `go.firma.de` |
-| 8081 | Oberfläche und API | Verwaltungsadresse, z. B. `filum.intranet.firma.de` (nur intern) |
+| 8080 | nur Kurzlink-Weiterleitungen | die Kurzlink-Domains, z. B. `go.firma.de` |
+| 8081 | Oberfläche und API | die Verwaltungsadresse, z. B. `filum.intranet.firma.de`, nur intern |
 
-## 📖 Handbuch
+Proxy-Beispiele für Caddy, nginx und Traefik, HTTPS, Updates und Sicherung: [Handbuch, Kapitel 13–18](docs/handbuch/13-installation.md).
+</details>
 
-Die vollständige Dokumentation, verständlich für Anwenderinnen und Anwender wie für die IT, steht im **[Handbuch](docs/handbuch/README.md)**, in 23 Kapiteln mit Bildschirmfotos:
+## Funktionen im Überblick
 
-- **Arbeiten mit Filum:** [Was ist Filum?](docs/handbuch/01-was-ist-filum.md) · [Erste Schritte](docs/handbuch/02-erste-schritte.md) · [Links anlegen](docs/handbuch/03-links-anlegen.md) · [Links finden und bearbeiten](docs/handbuch/04-links-verwalten.md) · [Zeitplan, Schutz und Regeln](docs/handbuch/05-zeitplan-schutz-regeln.md) · [Kampagnen](docs/handbuch/06-kampagnen-sammlungen.md) · [QR-Codes](docs/handbuch/07-qr-codes.md) · [Analyse](docs/handbuch/08-analyse.md)
-- **Administration:** [Domains](docs/handbuch/09-domains.md) · [Team und Rechte](docs/handbuch/10-team-und-rechte.md) · [Einstellungen](docs/handbuch/11-einstellungen.md) · [Datenschutz](docs/handbuch/12-datenschutz.md)
-- **Installation und Betrieb:** [Installation](docs/handbuch/13-installation.md) · [Reverse Proxy](docs/handbuch/14-reverse-proxy.md) · [Konfiguration](docs/handbuch/15-konfiguration.md) · [OIDC](docs/handbuch/16-anmeldung-oidc.md) · [Sicherung](docs/handbuch/17-sicherung.md) · [Betrieb und Updates](docs/handbuch/18-betrieb.md) · [REST-API](docs/handbuch/19-rest-api.md) · [Sicherheit](docs/handbuch/20-sicherheit.md) · [Architektur](docs/handbuch/21-architektur.md) · [Tests](docs/handbuch/22-tests.md) · [Einschränkungen](docs/handbuch/23-einschraenkungen.md)
+| Kampagnen | Analyse |
+| --- | --- |
+| ![Kampagnenübersicht](docs/screenshots/kampagnen.png) | ![Analyse mit QR-Anteil](docs/screenshots/analyse.png) |
 
-Änderungen je Version: [CHANGELOG.md](CHANGELOG.md). Die API beschreibt sich selbst unter `/api/v1/openapi.json`.
+- **Kürzen in zwei Sekunden**: Adresse einfügen, Enter, der Kurzlink liegt in der Zwischenablage. Eigene oder lesbare Kurzadressen, mehrere Adressen auf einmal, Lesezeichen „Mit Filum kürzen“, Hinweis auf vorhandene Links zum selben Ziel — [Kapitel 3](docs/handbuch/03-links-anlegen.md)
+- **Gedruckte Links bleiben verlässlich**: Eine einmal vergebene Kurzadresse wird nie für etwas anderes neu vergeben. Links lassen sich als *verteilt* schützen, jede Zieländerung steht im Verlauf und lässt sich zurückholen — [Kapitel 4](docs/handbuch/04-links-verwalten.md)
+- **Zeitplan, Limit, Passwort, Regeln**: Aktiv ab und bis, Ersatzziel nach Ablauf, Passwortschutz, andere Ziele je Gerät, Sprache, Uhrzeit oder Wochentag, A/B-Varianten — [Kapitel 5](docs/handbuch/05-zeitplan-schutz-regeln.md)
+- **Kampagnen mit UTM-Parametern**, Sammlungen, Schlagwörter und Vorlagen für wiederkehrende Aufgaben — [Kapitel 6](docs/handbuch/06-kampagnen-sammlungen.md)
+- **QR-Codes mit Herkunft**: PNG bis 4096 px oder SVG für die Druckerei; Filum zeigt, wie viele Besucher über den Code kamen — [Kapitel 7](docs/handbuch/07-qr-codes.md)
+- **Ehrliche Statistik**: Aufrufe statt Personen, Bots und Messenger-Vorschauen getrennt gezählt, Kampagnenvergleich, „Wann wird geklickt“ — [Kapitel 8](docs/handbuch/08-analyse.md)
+- **Vertipper-Radar**: zeigt Kurzadressen, die aufgerufen werden, aber nicht existieren, etwa wegen eines Tippfehlers auf dem Flyer, und leitet sie mit einem Klick auf den gemeinten Link — [Kapitel 8](docs/handbuch/08-analyse.md#vertipper-radar)
+- **Vorschau für Empfänger**: `go.firma.de/sommerfest+` zeigt das Ziel, bevor jemand klickt, mit Meldemöglichkeit bei Missbrauch — [Kapitel 5](docs/handbuch/05-zeitplan-schutz-regeln.md#vorschau-für-empfänger)
+- **Mehrere Domains** mit Besitznachweis und fertigen Proxy-Bausteinen — [Kapitel 9](docs/handbuch/09-domains.md)
+- **Team**: vier Rollen von *Ansehen* bis *Admin*, Einladung per Link, Anmeldung über authentik/OIDC, Protokoll aller Änderungen — [Kapitel 10](docs/handbuch/10-team-und-rechte.md)
+- **Datenschutz zum Einstellen**: Statistik aus, Grund oder erweitert, Aufbewahrungsfristen und ein fertiger Textbaustein für die Datenschutzerklärung — [Kapitel 12](docs/handbuch/12-datenschutz.md)
+- **Für den Betrieb gebaut**: automatische Sicherungen mit Wiederherstellen per Klick, ein Container, schreibgeschütztes Dateisystem, rund 46 000 Weiterleitungen pro Sekunde in einem Prozess ([gemessen](docs/handbuch/18-betrieb.md#ressourcen)) — [Kapitel 17](docs/handbuch/17-sicherung.md) & [18](docs/handbuch/18-betrieb.md)
+- **REST-API** mit Tokens und OpenAPI-Beschreibung, z. B. für Newsletter-Systeme — [Kapitel 19](docs/handbuch/19-rest-api.md)
+- **Hell & Dunkel**: folgt der Systemeinstellung, umschaltbar im Kontomenü; funktioniert auch auf dem Smartphone — [Kapitel 2](docs/handbuch/02-erste-schritte.md#die-oberfläche)
 
-## Entwicklung
+![Analyse im Dunkelmodus](docs/screenshots/analyse-dunkel.png)
+
+## Für Entwickler
+
+Filum ist ein einzelner Node-24-Prozess in TypeScript: [Fastify 5](https://fastify.dev) mit zwei getrennten Instanzen für Weiterleitung und Verwaltung, SQLite im WAL-Modus über better-sqlite3 als einzige Datenhaltung, die Oberfläche in React 19 mit eigenem CSS-Designsystem statt einer Komponentenbibliothek. Keine zweite Datenbank, kein Redis, kein externer Dienst. Warum so: [Kapitel 21 — Architektur](docs/handbuch/21-architektur.md).
 
 ```bash
 npm install
 npm run dev:server   # API und Weiterleitung auf 18081/18080 (Daten in ./data)
 npm run dev:web      # Oberfläche mit Hot Reload auf 5173
-npm test             # Server-Tests (vitest)
+npm test             # rund 300 Server-Tests (vitest)
 npm run typecheck
-scripts/e2e-local.sh # Browser-Tests gegen frischen Build
+scripts/e2e-local.sh # Browser-Tests gegen frischen Build, Desktop und Smartphone
+scripts/docker-lifecycle-test.sh   # Container: Persistenz, Sicherung, Wiederherstellung
 npm run docs:check   # Links und Anker in README und Handbuch prüfen
-scripts/docker-lifecycle-test.sh   # Container: Persistenz, Sicherung, Wiederherstellung (eigene Testkonfiguration, nutzt nicht .env)
+npm run docs:screenshots           # Bildschirmfotos aus einer Beispielinstanz neu erzeugen
 ```
 
 Für `dev:server` die Ports setzen: `PUBLIC_PORT=18080 ADMIN_PORT=18081 APP_URL=http://localhost:5173 DEFAULT_DOMAIN=localhost:18080`.
 
-## Bildschirmfotos
-
-| Analyse | Domains |
-| --- | --- |
-| ![Analyse](docs/screenshots/analyse.png) | ![Domains](docs/screenshots/domains.png) |
-
-Neu erzeugen mit Beispieldaten: `npm run docs:screenshots`.
+Alle drei Testebenen laufen bei jedem Push in GitHub Actions; ein Release-Image entsteht nur, wenn alle grün sind — [Kapitel 22](docs/handbuch/22-tests.md). Was sich von Version zu Version ändert, steht im [Änderungsprotokoll](CHANGELOG.md).
 
 ## Lizenz
 
-[MIT](LICENSE)
+[MIT](LICENSE) — © 2026 Patrick Baumfalk.
+
+Mit der Oberfläche ausgeliefert werden unter anderem die Schriften [Onest](https://github.com/simpals/onest) und [Martian Mono](https://github.com/evilmartians/mono) (beide SIL Open Font License 1.1) sowie Symbole aus [Lucide](https://lucide.dev) (ISC-Lizenz). Die Lizenzen aller npm-Abhängigkeiten stehen in deren Paketen unter `node_modules/`.
+
+## Hinweis
+
+Filum ist ein Werkzeug; wer es betreibt, ist für die verarbeiteten Daten verantwortlich. Den Textbaustein für die Datenschutzerklärung und die Bewertung in [Kapitel 12](docs/handbuch/12-datenschutz.md) bitte vor der Veröffentlichung prüfen bzw. prüfen lassen. Die Software wird ohne Gewähr bereitgestellt (siehe [LICENSE](LICENSE)).

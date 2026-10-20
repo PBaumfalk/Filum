@@ -34,6 +34,10 @@ Danach als Admin, in dieser Reihenfolge:
 
 Filum funktioniert auch auf dem Smartphone; die Seitenleiste klappt dann über das Menüsymbol auf.
 
+**Hell oder dunkel:** Filum folgt der Einstellung Ihres Betriebssystems. Im Kontomenü (Ihr Name unten links) wählen Sie unter **Darstellung** fest *Hell*, *Dunkel* oder wieder *Wie das System*. Die Wahl gilt für diesen Browser.
+
+![Analyse im Dunkelmodus](../screenshots/analyse-dunkel.png)
+
 ## Der erste Link in 30 Sekunden
 
 1. Kopieren Sie eine lange Adresse aus dem Browser.
