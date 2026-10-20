@@ -1,6 +1,6 @@
 # Filum – Link-Management-Studio. Mehrstufiger Build für linux/amd64 und linux/arm64.
 
-FROM node:24-bookworm-slim AS build
+FROM node:26-bookworm-slim AS build
 WORKDIR /app
 # Werkzeuge, falls für die Zielplattform kein vorgebautes SQLite-Modul existiert
 RUN apt-get update && apt-get install -y --no-install-recommends python3 make g++ ca-certificates \
@@ -15,7 +15,7 @@ RUN npm run build && npm prune --omit=dev --no-audit --no-fund \
   && rm -rf node_modules/better-sqlite3/deps node_modules/better-sqlite3/src \
   && node -e "new (require('better-sqlite3'))(':memory:').prepare('select 1').get()"
 
-FROM node:24-bookworm-slim
+FROM node:26-bookworm-slim
 ARG FILUM_VERSION=1.1.1
 ARG FILUM_SOURCE=""
 LABEL org.opencontainers.image.title="Filum" \
