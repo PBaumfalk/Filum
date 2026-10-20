@@ -1,0 +1,19 @@
+# Hält GitHub-Actions, npm-Pakete und das Node-Basis-Image aktuell.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      # Kleine Updates gesammelt in einem PR statt einer Flut einzelner
+      minor-und-patch:
+        update-types: [minor, patch]
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly

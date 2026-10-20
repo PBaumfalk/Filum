@@ -1,0 +1,42 @@
+# Filum – Start: docker compose up -d
+# Konfiguration in .env (Vorlage: .env.example). Ausführlich: docs/installation.md
+# Benötigt Docker Compose 2.24 oder neuer (env_file mit required).
+
+services:
+  filum:
+    # Eigenes Build (Standard) oder fertiges Image, z. B. FILUM_IMAGE=ghcr.io/pbaumfalk/filum:1
+    image: ${FILUM_IMAGE:-filum:latest}
+    build: .
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      APP_URL: ${APP_URL:?APP_URL in .env setzen (Vorlage .env.example)}
+      DEFAULT_DOMAIN: ${DEFAULT_DOMAIN:?DEFAULT_DOMAIN in .env setzen (Vorlage .env.example)}
+      TZ: ${TZ:-Europe/Berlin}
+      SETUP_CODE: ${SETUP_CODE:-}
+    ports:
+      # Öffentlich: nur Kurzlink-Weiterleitungen. Diesen Port gibt der Reverse Proxy für die Kurzlink-Domains frei.
+      - "${PUBLIC_BIND:-127.0.0.1}:${PUBLIC_HOST_PORT:-8080}:8080"
+      # Intern: Oberfläche und API. Nur im Intranet bzw. über den internen Proxy erreichbar machen.
+      - "${ADMIN_BIND:-127.0.0.1}:${ADMIN_HOST_PORT:-8081}:8081"
+    volumes:
+      - filum-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 512m
+    pids_limit: 200
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  filum-data:

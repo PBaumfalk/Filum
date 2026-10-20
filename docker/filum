@@ -1,0 +1,3 @@
+#!/bin/sh
+# Kommandozeile im Container: docker compose exec filum filum <befehl>
+exec node /app/dist/server/cli.js "$@"

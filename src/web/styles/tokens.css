@@ -1,0 +1,199 @@
+/* Filum – Designtokens
+   Porzellan, Tinte und ein roter Faden. Rot ist knapp: Faden, Hauptaktion, Fehler.
+   Fokus und Auswahl tragen kühle Tinte (--focus, --select-*).
+   --faint erreicht ≥ 4,5:1 (WCAG AA) gegen bg, surface, surface-2 und sunken – hell wie dunkel. */
+
+:root {
+  --font-ui: 'Onest Variable', 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-code: 'Martian Mono Variable', 'Martian Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --surface-2: #f8f9fb;
+  --sunken: #ebeef2;
+  --line: #e1e5ea;
+  --line-strong: #cdd3da;
+  --ink: #18202b;
+  --ink-2: #364150;
+  --muted: #4e5967;
+  --faint: #5f6976;
+  --thread: #d1183b;
+  --thread-hover: #b3122f;
+  --thread-soft: rgba(209, 24, 59, 0.09);
+  --thread-line: rgba(209, 24, 59, 0.55);
+  --on-thread: #ffffff;
+  --on-ink: #ffffff;
+  --ok: #24804f;
+  --ok-soft: rgba(36, 128, 79, 0.11);
+  --warn: #9a6512;
+  --warn-soft: rgba(183, 121, 31, 0.13);
+  --danger: #b4232f;
+  --danger-soft: rgba(180, 35, 47, 0.09);
+  --info: #2c5d9e;
+  --info-soft: rgba(44, 93, 158, 0.1);
+
+  /* Fokus/Auswahl: kühle Tinte statt Rot */
+  --focus: #2f5b94;
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--focus);
+  --focus-soft: rgba(47, 91, 148, 0.16);
+  --select-bg: rgba(44, 93, 158, 0.07);
+  --select-line: rgba(47, 91, 148, 0.55);
+  --shadow-pop: 0 1px 2px rgba(16, 24, 40, 0.06), 0 12px 32px -8px rgba(16, 24, 40, 0.18);
+  --shadow-panel: -1px 0 0 var(--line), -24px 0 48px -32px rgba(16, 24, 40, 0.25);
+
+  --r-sm: 6px;
+  --r-md: 9px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-md: 0.9375rem;
+  --fs-lg: 1.0625rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: 2.75rem;
+
+  --sidebar: 236px;
+  --inspector: 520px;
+  --topbar: 56px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Etikettenfarben */
+  --c-slate: #5b6675;
+  --c-slate-bg: #e9ecf0;
+  --c-crimson: #8f3a52;
+  --c-crimson-bg: #f5e9ed;
+  --c-amber: #8a5a0e;
+  --c-amber-bg: #fbf0d9;
+  --c-moss: #2b6e45;
+  --c-moss-bg: #e3f2e8;
+  --c-teal: #11686b;
+  --c-teal-bg: #dff1f1;
+  --c-indigo: #3a4aa8;
+  --c-indigo-bg: #e7eafb;
+  --c-plum: #7a3a86;
+  --c-plum-bg: #f4e7f6;
+  --c-rust: #9c3f12;
+  --c-rust-bg: #fbe9df;
+
+  --chart-1: #d1183b;
+  --chart-2: #18202b;
+  --chart-3: #8a94a1;
+  --chart-grid: #e7eaee;
+  --heat-0: #eef1f4;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #10151d;
+    --surface: #161d27;
+    --surface-2: #1b2430;
+    --sunken: #0c1118;
+    --line: #253040;
+    --line-strong: #344256;
+    --ink: #e6eaf0;
+    --ink-2: #c3cad4;
+    --muted: #a7b0bc;
+    --faint: #8d98a6;
+    --focus: #8db2ea;
+    --focus-soft: rgba(141, 178, 234, 0.2);
+    --select-bg: rgba(127, 169, 230, 0.12);
+    --select-line: rgba(141, 178, 234, 0.6);
+    --thread: #ff4d6a;
+    --thread-hover: #ff6b83;
+    --thread-soft: rgba(255, 77, 106, 0.12);
+    --thread-line: rgba(255, 77, 106, 0.6);
+    --on-thread: #1a0207;
+    --on-ink: #10151d;
+    --ok: #5ccb8e;
+    --ok-soft: rgba(92, 203, 142, 0.13);
+    --warn: #e2b05a;
+    --warn-soft: rgba(226, 176, 90, 0.14);
+    --danger: #ff6b75;
+    --danger-soft: rgba(255, 107, 117, 0.12);
+    --info: #7fa9e6;
+    --info-soft: rgba(127, 169, 230, 0.13);
+    --shadow-pop: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -8px rgba(0, 0, 0, 0.6);
+    --shadow-panel: -1px 0 0 var(--line), -24px 0 48px -32px rgba(0, 0, 0, 0.7);
+    --c-slate: #b3bcc8;
+    --c-slate-bg: #243041;
+    --c-crimson: #e29aae;
+    --c-crimson-bg: #33202a;
+    --c-amber: #e9bd6e;
+    --c-amber-bg: #372a12;
+    --c-moss: #7fd3a1;
+    --c-moss-bg: #15301f;
+    --c-teal: #6fd2d4;
+    --c-teal-bg: #11302f;
+    --c-indigo: #a5b1ff;
+    --c-indigo-bg: #1f2547;
+    --c-plum: #e1a5ec;
+    --c-plum-bg: #33193a;
+    --c-rust: #f2a07a;
+    --c-rust-bg: #3a2014;
+    --chart-1: #ff4d6a;
+    --chart-2: #e6eaf0;
+    --chart-3: #6b7684;
+    --chart-grid: #222c39;
+    --heat-0: #1b2430;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #10151d;
+  --surface: #161d27;
+  --surface-2: #1b2430;
+  --sunken: #0c1118;
+  --line: #253040;
+  --line-strong: #344256;
+  --ink: #e6eaf0;
+  --ink-2: #c3cad4;
+  --muted: #a7b0bc;
+  --faint: #8d98a6;
+  --focus: #8db2ea;
+  --focus-soft: rgba(141, 178, 234, 0.2);
+  --select-bg: rgba(127, 169, 230, 0.12);
+  --select-line: rgba(141, 178, 234, 0.6);
+  --thread: #ff4d6a;
+  --thread-hover: #ff6b83;
+  --thread-soft: rgba(255, 77, 106, 0.12);
+  --thread-line: rgba(255, 77, 106, 0.6);
+  --on-thread: #1a0207;
+  --on-ink: #10151d;
+  --ok: #5ccb8e;
+  --ok-soft: rgba(92, 203, 142, 0.13);
+  --warn: #e2b05a;
+  --warn-soft: rgba(226, 176, 90, 0.14);
+  --danger: #ff6b75;
+  --danger-soft: rgba(255, 107, 117, 0.12);
+  --info: #7fa9e6;
+  --info-soft: rgba(127, 169, 230, 0.13);
+  --shadow-pop: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -8px rgba(0, 0, 0, 0.6);
+  --shadow-panel: -1px 0 0 var(--line), -24px 0 48px -32px rgba(0, 0, 0, 0.7);
+  --c-slate: #b3bcc8;
+  --c-slate-bg: #243041;
+  --c-crimson: #e29aae;
+  --c-crimson-bg: #33202a;
+  --c-amber: #e9bd6e;
+  --c-amber-bg: #372a12;
+  --c-moss: #7fd3a1;
+  --c-moss-bg: #15301f;
+  --c-teal: #6fd2d4;
+  --c-teal-bg: #11302f;
+  --c-indigo: #a5b1ff;
+  --c-indigo-bg: #1f2547;
+  --c-plum: #e1a5ec;
+  --c-plum-bg: #33193a;
+  --c-rust: #f2a07a;
+  --c-rust-bg: #3a2014;
+  --chart-1: #ff4d6a;
+  --chart-2: #e6eaf0;
+  --chart-3: #6b7684;
+  --chart-grid: #222c39;
+  --heat-0: #1b2430;
+  color-scheme: dark;
+}

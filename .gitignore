@@ -1,0 +1,12 @@
+node_modules
+dist
+data
+*.db
+*.db-*
+test-results
+playwright-report
+.env
+e2e/.auth
+.DS_Store
+.claude
+CLAUDE.md
