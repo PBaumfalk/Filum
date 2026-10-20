@@ -243,6 +243,8 @@ test('Alle Hauptseiten laden ohne Konsolenfehler', async ({ page }) => {
 
 test('Tastatur: N fokussiert Eingabe, / die Suche, Cmd+K die Palette', async ({ page }) => {
   await page.goto('/analyse');
+  // Erst drücken, wenn die Oberfläche steht – sonst ist der Tastatur-Handler noch nicht registriert (Wettlauf im CI)
+  await expect(page.getByRole('heading', { name: 'Analyse', level: 1 })).toBeVisible();
   await page.keyboard.press('n');
   await expect(page.getByLabel('Zieladresse')).toBeFocused();
   await page.getByLabel('Zieladresse').press('Escape');
