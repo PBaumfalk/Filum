@@ -24,9 +24,9 @@ Mit **QR-Aufrufe getrennt zählen** enthält der Code den Kurzlink mit angehäng
 
 ## Gestaltete Codes mit Tessera
 
-Für Codes mit Logo, Rahmen, Druckvorschau, Schnittmarken und Lesbarkeitsprüfung gibt es im Intranet **Tessera**. Ist Tessera angebunden, steht im QR-Reiter **In Tessera gestalten**: Filum legt dort einen Code mit dem Kurzlink (inklusive `?qr`) an, Schlagwort „Filum“, und öffnet ihn im Tessera-Editor.
+Filum lässt sich optional an **Tessera** anbinden, ein QR-Studio für Codes mit Logo, Rahmen, Druckvorschau, Schnittmarken und Lesbarkeitsprüfung. Ist Tessera angebunden, steht im QR-Reiter **In Tessera gestalten**: Filum legt dort einen Code mit dem Kurzlink (inklusive `?qr`) an, Schlagwort „Filum“, und öffnet ihn im Tessera-Editor.
 
-Ohne Anbindung erscheint der Hinweis *„Tessera ist noch nicht mit Filum verbunden“*. Alles andere funktioniert unabhängig davon.
+Ohne Anbindung erwähnt der QR-Reiter Tessera nicht; nur Admins sehen eine kleine Zeile mit dem Verweis auf dieses Kapitel. Alles andere funktioniert unabhängig davon. Die Einrichtung beschreibt der nächste Abschnitt.
 
 ## Für die IT: Tessera anbinden
 

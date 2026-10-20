@@ -84,7 +84,7 @@ Filum ruft Zieladressen ab, um Titel und Vorschaubild zu lesen und regelmäßig 
 | `TESSERA_URL` | – | Adresse des QR-Studios Tessera, z. B. `https://qr.intranet.firma.de`. |
 | `TESSERA_TOKEN` | – | API-Token aus Tessera (Rolle *Bearbeiten*). |
 
-Ohne diese Werte funktioniert alles; nur die Schaltfläche „In Tessera gestalten“ fehlt. Siehe [tessera.md](07-qr-codes.md).
+Ohne diese Werte funktioniert alles; nur die Schaltfläche „In Tessera gestalten“ fehlt. Siehe [QR-Codes](07-qr-codes.md).
 
 ---
 

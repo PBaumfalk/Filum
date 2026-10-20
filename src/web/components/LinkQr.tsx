@@ -109,25 +109,25 @@ export function LinkQr({ link }: { link: Link }) {
           <Download /> SVG (Vektor)
         </a>
       </div>
-      <div className="callout">
-        <Palette />
-        <div className="stack" style={{ '--gap': '8px' } as React.CSSProperties}>
-          <span>
-            Für Logo, Rahmen, Druckvorschau und Lesbarkeitsprüfung gibt es <strong>Tessera</strong>, das QR-Studio im Intranet.
-          </span>
-          {session.data?.tessera ? (
+      {session.data?.tessera ? (
+        <div className="callout">
+          <Palette />
+          <div className="stack" style={{ '--gap': '8px' } as React.CSSProperties}>
+            <span>
+              Logo, Rahmen, Druckvorschau und Lesbarkeitsprüfung: in <strong>Tessera</strong> weiter gestalten.
+            </span>
             <button className="btn sm" style={{ justifySelf: 'start' }} onClick={() => void tessera()} disabled={busy}>
               {busy ? <span className="spinner" /> : <ExternalLink />} In Tessera gestalten
             </button>
-          ) : (
-            <span className="xsmall muted">
-              {session.data?.user?.role === 'admin'
-                ? 'Verbindung einrichten: TESSERA_URL und TESSERA_TOKEN in der Konfiguration (siehe Dokumentation).'
-                : 'Tessera ist noch nicht mit Filum verbunden. Ein Admin kann die Verbindung einrichten.'}
-            </span>
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        session.data?.user?.role === 'admin' && (
+          <p className="xsmall muted">
+            Optional lässt sich Tessera (QR-Studio mit Logo, Rahmen und Druckvorschau) anbinden, siehe Handbuch, Kapitel QR-Codes.
+          </p>
+        )
+      )}
     </div>
   );
 }

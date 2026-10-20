@@ -4,6 +4,9 @@ Alle nennenswerten Änderungen an Filum. Format nach [Keep a Changelog](https://
 
 ## [Unveröffentlicht]
 
+### Geändert
+- QR-Reiter: Tessera erscheint nur noch mit Schaltfläche, wenn es angebunden ist. Ohne Anbindung sehen Admins eine kleine Zeile mit Verweis aufs Handbuch, alle anderen keinen Hinweis; die Umgebungsvariablen stehen nicht mehr in der Oberfläche.
+
 ### Dokumentation
 - README neu geschrieben: Nutzen und Zielgruppe zuerst, Installation in aufklappbaren Wegen („Ausprobieren in einer Minute“ mit `docker run`, Server mit Compose), Funktionsüberblick mit Verweisen auf die Handbuchkapitel, Bildschirmfoto im Dunkelmodus, Lizenzen der mitgelieferten Schriften und Symbole.
 - Handbuch Kapitel 2: Umschalten zwischen hell und dunkel.
