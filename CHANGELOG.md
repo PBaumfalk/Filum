@@ -4,6 +4,8 @@ Alle nennenswerten Änderungen an Filum. Format nach [Keep a Changelog](https://
 
 ## [Unveröffentlicht]
 
+## [1.1.1] – 2026-10-20
+
 ### Geändert
 - QR-Reiter: Tessera erscheint nur noch mit Schaltfläche, wenn es angebunden ist. Ohne Anbindung sehen Admins eine kleine Zeile mit Verweis aufs Handbuch, alle anderen keinen Hinweis; die Umgebungsvariablen stehen nicht mehr in der Oberfläche.
 
