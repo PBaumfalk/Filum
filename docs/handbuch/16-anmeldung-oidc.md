@@ -1,6 +1,8 @@
-# Anmeldung über authentik (OIDC)
+# 16 — Anmeldung über authentik (OIDC) (IT)
 
-Filum unterstützt OpenID Connect (Authorization Code Flow mit PKCE). Getestet wurde der Ablauf mit den Bibliotheksfunktionen; gegen eine echte authentik-Instanz konnte in der Entwicklungsumgebung **nicht** getestet werden (siehe [einschraenkungen.md](einschraenkungen.md)).
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
+
+Filum unterstützt OpenID Connect (Authorization Code Flow mit PKCE). Getestet wurde der Ablauf mit den Bibliotheksfunktionen; gegen eine echte authentik-Instanz konnte in der Entwicklungsumgebung **nicht** getestet werden (siehe [einschraenkungen.md](23-einschraenkungen.md)).
 
 ## In authentik
 
@@ -35,3 +37,7 @@ Dann `docker compose up -d`. Auf der Anmeldeseite erscheint die Schaltfläche.
 - In Filum gesperrte Konten können sich auch über OIDC nicht anmelden.
 - `DISABLE_LOCAL_LOGIN=true` blendet die Passwortanmeldung aus. Notfallzugang: `filum reset-password` auf der Kommandozeile und Variable vorübergehend auf `false`.
 - Filum speichert keine Tokens des Anbieters, nur Issuer und `sub` zur Wiedererkennung.
+
+---
+
+Weiter: [17 — Sicherung und Wiederherstellung](17-sicherung.md) · [Zur Übersicht](README.md)

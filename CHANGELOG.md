@@ -2,6 +2,21 @@
 
 Alle nennenswerten Änderungen an Filum. Format nach [Keep a Changelog](https://keepachangelog.com/de/1.1.0/), Versionen nach [Semantic Versioning](https://semver.org/lang/de/). Datenbankmigrationen laufen beim Start automatisch, vorher legt Filum eine Sicherung an.
 
+## [1.1.0] – 2026-10-20
+
+### Neu
+- **Links auf eine andere Domain verschieben:** In der Mehrfachauswahl gibt es die Aktion **Domain** (bei mehr als einer aktiven Domain), mit ausdrücklicher Bestätigung, die geschützte Links eigens zählt. Die alten Adressen bleiben reserviert.
+- **Handbuch** in 23 Kapiteln nach Zielgruppen (Anwender, Administration, IT) mit Schnelleinstieg und 12 Bildschirmfotos aus einer Beispielinstanz (`docs/handbuch/`).
+- `npm run docs:check` prüft alle Links und Anker in README und Handbuch, auch in der CI. `npm run docs:screenshots` erzeugt die Bildschirmfotos neu.
+
+### Behoben
+- Analyse: Im 24-Stunden-Diagramm überlappten die letzten beiden Achsenbeschriftungen.
+- Link-Editor: Die Beschriftung „Regel 1“ brach in zwei Zeilen um.
+- Container-Test erwartete fest die Schemaversion 1 und schlug seit der Migration auf Version 3 fehl.
+
+### Geändert
+- Die Dokumentation liegt jetzt unter `docs/handbuch/`. Verweise in Fehlermeldungen und Konfigurationsdateien zeigen auf die neuen Kapitel.
+
 ## [1.0.0] – 2026-10-20
 
 Erste veröffentlichte Version.

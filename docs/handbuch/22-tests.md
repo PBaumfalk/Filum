@@ -1,6 +1,8 @@
-# Tests und Qualitätssicherung
+# 22 — Tests und Qualitätssicherung (IT)
 
-Filum wird auf drei Ebenen geprüft. Alle drei laufen bei jedem Push in GitHub Actions ([`.github/workflows/ci.yml`](../.github/workflows/ci.yml)); ein Release-Image entsteht nur, wenn alle grün sind.
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
+
+Filum wird auf drei Ebenen geprüft. Alle drei laufen bei jedem Push in GitHub Actions ([`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)); ein Release-Image entsteht nur, wenn alle grün sind.
 
 | Ebene | Werkzeug | Befehl | Was geprüft wird |
 | --- | --- | --- | --- |
@@ -8,11 +10,11 @@ Filum wird auf drei Ebenen geprüft. Alle drei laufen bei jedem Push in GitHub A
 | Oberfläche | Playwright (Chromium) | `scripts/e2e-local.sh` | Abläufe im Browser gegen einen frischen Build, Desktop und Smartphone |
 | Container | Shell + Docker Compose | `scripts/docker-lifecycle-test.sh` | Ersteinrichtung, Persistenz, Sicherung, Wiederherstellung, Härtung im echten Image |
 
-Dazu kommt `npm run typecheck` für Server und Oberfläche.
+Dazu kommen `npm run typecheck` für Server und Oberfläche und `npm run docs:check`, das alle Links und Anker in README und Handbuch prüft. Die Bildschirmfotos im Handbuch erzeugt `npm run docs:screenshots` aus einer frischen Instanz mit Beispieldaten neu.
 
 ## Server-Tests (`tests/`)
 
-Jeder Test startet über `createTestApp()` ([`tests/helpers.ts`](../tests/helpers.ts)) beide Fastify-Instanzen mit eigener Datenbank und spricht sie mit `inject()` an, also ohne Netzwerk und ohne Mocks der Datenschicht.
+Jeder Test startet über `createTestApp()` ([`tests/helpers.ts`](../../tests/helpers.ts)) beide Fastify-Instanzen mit eigener Datenbank und spricht sie mit `inject()` an, also ohne Netzwerk und ohne Mocks der Datenschicht.
 
 | Datei | Schwerpunkt |
 | --- | --- |
@@ -56,3 +58,7 @@ Einmalig vorher: `npx playwright install chromium`.
 docker build -t filum:latest .
 scripts/docker-lifecycle-test.sh
 ```
+
+---
+
+Weiter: [23 — Bekannte Einschränkungen](23-einschraenkungen.md) · [Zur Übersicht](README.md)

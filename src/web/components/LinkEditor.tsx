@@ -857,7 +857,7 @@ function RoutingEditor({ value, onChange, mainUrl, error }: { value: Routing; on
           style={{ padding: 12, display: 'grid', gap: 10, background: 'var(--surface-2)' }}
         >
           <div className="row">
-            <strong className="small">Regel {i + 1}</strong>
+            <strong className="small" style={{ whiteSpace: 'nowrap' }}>Regel {i + 1}</strong>
             <input className="input" style={{ minHeight: 30, padding: '4px 8px', fontSize: 'var(--fs-sm)' }} placeholder="Bezeichnung (optional)" value={r.label} onChange={(e) => setRule(i, { ...r, label: e.target.value })} />
             <button type="button" className="btn ghost icon sm" onClick={() => onChange({ ...value, rules: value.rules.filter((_, j) => j !== i) })} aria-label="Regel entfernen">
               <Trash2 />

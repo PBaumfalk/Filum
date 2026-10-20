@@ -1,4 +1,6 @@
-# Installation auf einem Linux-Server
+# 13 — Installation (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 Diese Anleitung führt von einem leeren Linux-Server zu einem laufenden Filum hinter Ihrem Reverse Proxy. Sie brauchen etwa 20 Minuten.
 
@@ -11,7 +13,7 @@ Diese Anleitung führt von einem leeren Linux-Server zu einem laufenden Filum hi
   - einen für die **Verwaltung**, z. B. `filum.intranet.firma.de`
   - einen (oder mehrere) für die **Kurzlinks**, z. B. `go.firma.de`
 
-Die beiden Hostnamen müssen verschieden sein. Filum trennt Verwaltung und öffentliche Weiterleitung auf zwei Ports; der Proxy verbindet jeden Hostnamen mit genau einem davon (siehe [reverse-proxy.md](reverse-proxy.md)).
+Die beiden Hostnamen müssen verschieden sein. Filum trennt Verwaltung und öffentliche Weiterleitung auf zwei Ports; der Proxy verbindet jeden Hostnamen mit genau einem davon (siehe [reverse-proxy.md](14-reverse-proxy.md)).
 
 ## 1. Dateien auf den Server bringen
 
@@ -52,7 +54,7 @@ APP_URL=https://filum.intranet.firma.de      # Adresse der Verwaltung
 DEFAULT_DOMAIN=go.intranet.firma.de          # erste Kurzlink-Domain
 ```
 
-Alle weiteren Variablen erklärt [konfiguration.md](konfiguration.md).
+Alle weiteren Variablen erklärt [konfiguration.md](15-konfiguration.md).
 
 ## 3. Bauen und starten
 
@@ -85,7 +87,7 @@ Standardmäßig bietet Docker die Container-Ports nur auf `127.0.0.1` an:
 | `127.0.0.1:8080` | 8080 | nur Kurzlink-Weiterleitungen | `go.firma.de` (und weitere Kurzlink-Domains) |
 | `127.0.0.1:8081` | 8081 | Oberfläche und API | `filum.intranet.firma.de` |
 
-Fertige Beispiele für Caddy, nginx und Traefik: [reverse-proxy.md](reverse-proxy.md). Läuft der Proxy in einem anderen Container, binden Sie Filum stattdessen an dessen Docker-Netz (Beispiel in der gleichen Datei).
+Fertige Beispiele für Caddy, nginx und Traefik: [reverse-proxy.md](14-reverse-proxy.md). Läuft der Proxy in einem anderen Container, binden Sie Filum stattdessen an dessen Docker-Netz (Beispiel in der gleichen Datei).
 
 ## 5. Ersteinrichtung im Browser
 
@@ -104,11 +106,11 @@ Soll ein Kurzlink-Hostname aus dem Internet erreichbar sein:
 3. In Filum unter **Domains → Domain hinzufügen** „Öffentlich“ wählen.
 4. Besitz nachweisen: TXT-Eintrag `_filum-challenge.go.firma.de` mit dem angezeigten Wert, oder **Über HTTP prüfen**, sobald DNS und Proxy stehen.
 
-Details: [domains.md](domains.md).
+Details: [domains.md](09-domains.md).
 
 ## 7. Sicherung einplanen
 
-Filum sichert sich alle 24 Stunden selbst in das Volume (`/data/backups`). Kopieren Sie diese Dateien zusätzlich auf ein anderes System. Anleitung und getestete Wiederherstellung: [sicherung.md](sicherung.md).
+Filum sichert sich alle 24 Stunden selbst in das Volume (`/data/backups`). Kopieren Sie diese Dateien zusätzlich auf ein anderes System. Anleitung und getestete Wiederherstellung: [sicherung.md](17-sicherung.md).
 
 ## Ohne eigenes Build
 
@@ -134,4 +136,8 @@ docker buildx build --platform linux/amd64,linux/arm64 \
   -t registry.firma.de/filum:1.0.0 --push .
 ```
 
-Für die fremde Plattform läuft der Build unter Emulation (QEMU) und dauert deutlich länger. Fehlt die Emulation, richten Sie sie einmalig mit `docker run --privileged --rm tonistiigi/binfmt --install all` ein. Ein Server ohne Internetzugang: siehe [betrieb.md](betrieb.md#ohne-internetzugang).
+Für die fremde Plattform läuft der Build unter Emulation (QEMU) und dauert deutlich länger. Fehlt die Emulation, richten Sie sie einmalig mit `docker run --privileged --rm tonistiigi/binfmt --install all` ein. Ein Server ohne Internetzugang: siehe [betrieb.md](18-betrieb.md#ohne-internetzugang).
+
+---
+
+Weiter: [14 — Reverse Proxy, HTTPS und Trennung](14-reverse-proxy.md) · [Zur Übersicht](README.md)

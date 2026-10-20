@@ -1,4 +1,6 @@
-# Sicherheitskonzept
+# 20 — Sicherheitskonzept (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 ## Angriffsflächen und Schutz
 
@@ -38,3 +40,7 @@ Verwaltung: `Content-Security-Policy` (siehe oben), `Strict-Transport-Security` 
 - Filum prüft Ziele nicht gegen externe Reputationsdienste (bewusst: keine Cloud-Abhängigkeit). Die Sperrliste ist manuell.
 - Ein Admin-Konto kann alles; schützen Sie es gut, idealerweise über OIDC mit zweitem Faktor im Identity Provider.
 - Für den Schutz vor volumetrischen Angriffen (DDoS) ist der Reverse Proxy zuständig.
+
+---
+
+Weiter: [21 — Architektur](21-architektur.md) · [Zur Übersicht](README.md)

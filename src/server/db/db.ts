@@ -19,7 +19,7 @@ export function openDatabase(file: string, log: Logger, backupDir?: string): DB 
 
   const check = db.pragma('quick_check', { simple: true });
   if (check !== 'ok') {
-    throw new Error(`Die Datenbank ${file} ist beschädigt (quick_check: ${check}). Bitte eine Sicherung zurückspielen (docs/sicherung.md).`);
+    throw new Error(`Die Datenbank ${file} ist beschädigt (quick_check: ${check}). Bitte eine Sicherung zurückspielen (docs/handbuch/17-sicherung.md).`);
   }
   migrate(db, log, existed ? backupDir : undefined);
   return db;

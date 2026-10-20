@@ -26,7 +26,7 @@ export function ensureDataDir(dir: string): void {
     throw new Error(
       `Das Datenverzeichnis ${dir} ist nicht beschreibbar (${(e as NodeJS.ErrnoException).code ?? (e as Error).message}). ` +
         `Filum läuft als Benutzer-ID ${uid ?? 'unbekannt'}. Bei einem eingebundenen Host-Ordner die Rechte anpassen, ` +
-        `z. B. sudo chown -R ${uid ?? 1000}:${uid ?? 1000} <pfad-auf-dem-host>. Siehe docs/betrieb.md.`,
+        `z. B. sudo chown -R ${uid ?? 1000}:${uid ?? 1000} <pfad-auf-dem-host>. Siehe docs/handbuch/18-betrieb.md.`,
     );
   }
 }

@@ -1,5 +1,5 @@
 # Filum – Start: docker compose up -d
-# Konfiguration in .env (Vorlage: .env.example). Ausführlich: docs/installation.md
+# Konfiguration in .env (Vorlage: .env.example). Ausführlich: docs/handbuch/13-installation.md
 # Benötigt Docker Compose 2.24 oder neuer (env_file mit required).
 
 services:

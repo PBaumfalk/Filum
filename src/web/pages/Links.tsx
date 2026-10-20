@@ -898,12 +898,16 @@ function BulkBar({ ids, selected, onDone, canEdit }: { ids: number[]; selected: 
   const tags = useTags();
   const collections = useCollections();
   const campaigns = useCampaigns();
+  const domains = useDomains();
   const [busy, setBusy] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [menu, setMenu] = useState<'tag' | 'collection' | 'campaign' | 'more' | null>(null);
+  // Domainwechsel ändert den Kurzlink: erst Ziel wählen, dann ausdrücklich bestätigen
+  const [moveTo, setMoveTo] = useState<{ id: number; host: string } | null>(null);
+  const [menu, setMenu] = useState<'tag' | 'collection' | 'campaign' | 'domain' | 'more' | null>(null);
   const tagRef = useRef<HTMLButtonElement>(null);
   const colRef = useRef<HTMLButtonElement>(null);
   const campRef = useRef<HTMLButtonElement>(null);
+  const domRef = useRef<HTMLButtonElement>(null);
   const moreRef = useRef<HTMLButtonElement>(null);
   const [newTag, setNewTag] = useState('');
 
@@ -920,6 +924,7 @@ function BulkBar({ ids, selected, onDone, canEdit }: { ids: number[]; selected: 
   const anyUnprotected = some((l) => !l.protected);
   const protectedCount = selected.filter((l) => l.protected).length;
   const activeCampaigns = (campaigns.data?.items ?? []).filter((c) => !c.archived);
+  const activeDomains = (domains.data?.items ?? []).filter((d) => d.status === 'active');
 
   const run = async (action: Record<string, unknown>, msg: string, confirmProtected = false) => {
     setBusy(true);
@@ -935,6 +940,7 @@ function BulkBar({ ids, selected, onDone, canEdit }: { ids: number[]; selected: 
     } finally {
       setBusy(false);
       setConfirmDelete(false);
+      setMoveTo(null);
     }
   };
 
@@ -1002,6 +1008,44 @@ function BulkBar({ ids, selected, onDone, canEdit }: { ids: number[]; selected: 
               </RouterLink>
             )}
           </Popover>
+          {activeDomains.length > 1 && (
+            <>
+              <button ref={domRef} className="btn sm" onClick={() => setMenu(menu === 'domain' ? null : 'domain')} disabled={busy} aria-haspopup="menu" aria-expanded={menu === 'domain'}>
+                <Globe /> Domain
+              </button>
+              <Popover anchor={domRef} open={menu === 'domain'} onClose={() => setMenu(null)} role="menu" label="Auf andere Domain verschieben">
+                <div className="menu-label">Auf andere Domain verschieben</div>
+                {activeDomains.map((d) => (
+                  <MenuItem
+                    key={d.id}
+                    icon={<Globe />}
+                    onSelect={() => {
+                      setMenu(null);
+                      setConfirmDelete(false);
+                      setMoveTo({ id: d.id, host: d.host });
+                    }}
+                  >
+                    {d.host}
+                  </MenuItem>
+                ))}
+              </Popover>
+            </>
+          )}
+          {moveTo && (
+            <>
+              <button
+                className="btn sm danger solid"
+                onClick={() => void run({ type: 'setDomain', domainId: moveTo.id }, `Nach ${moveTo.host} verschoben`, protectedCount > 0)}
+                disabled={busy}
+                title="Die bisherigen Kurzlinks funktionieren danach nicht mehr und bleiben reserviert. Gedruckte oder verschickte Exemplare führen dann auf eine Hinweisseite."
+              >
+                <Globe /> {ids.length} nach {moveTo.host} verschieben{protectedCount > 0 ? `, davon ${protectedCount} geschützt` : ''}
+              </button>
+              <button className="btn sm" onClick={() => setMoveTo(null)} disabled={busy}>
+                Abbrechen
+              </button>
+            </>
+          )}
           {anyEnabled && (
             <button className="btn sm" onClick={() => void run({ type: 'disable' }, 'Deaktiviert')} disabled={busy}>
               <CircleOff /> Deaktivieren

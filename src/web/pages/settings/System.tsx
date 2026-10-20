@@ -89,7 +89,7 @@ export function System() {
           <dd>{num(s.cacheEntries)} Kurzadressen im Speicher</dd>
         </dl>
       </div>
-      <SectionTitle title="Betrieb">Updates, Sicherung per Kommandozeile und Reverse-Proxy-Beispiele stehen in der mitgelieferten Dokumentation (docs/betrieb.md).</SectionTitle>
+      <SectionTitle title="Betrieb">Updates, Sicherung per Kommandozeile und Reverse-Proxy-Beispiele stehen in der mitgelieferten Dokumentation (docs/handbuch/18-betrieb.md).</SectionTitle>
     </div>
   );
 }

@@ -45,6 +45,8 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Handbuch – alle Links und Anker vorhanden
+        run: npm run docs:check
       - run: npx playwright install --with-deps chromium
       - name: Browser-Tests gegen frischen Build (Desktop und Smartphone)
         run: scripts/e2e-local.sh
@@ -86,7 +88,7 @@ jobs:
           build-args: |
             FILUM_VERSION=${{ steps.version.outputs.version }}
       - name: Container-Test (Härtung, Persistenz, Sicherung, Wiederherstellung, Port-Trennung)
-        # Derselbe Weg wie in docs/tests.md: docker compose mit docker-compose.yml und eigener Testkonfiguration
+        # Derselbe Weg wie in docs/handbuch/22-tests.md: docker compose mit docker-compose.yml und eigener Testkonfiguration
         run: scripts/docker-lifecycle-test.sh
       - name: Mit ungültiger Konfiguration darf der Container nicht starten
         run: |

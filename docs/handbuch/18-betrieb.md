@@ -1,4 +1,6 @@
-# Betrieb
+# 18 — Betrieb und Updates (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 ## Täglicher Betrieb
 
@@ -26,7 +28,7 @@ docker compose ps                               # nach ~20 s: healthy
 docker compose logs filum | grep -i migration   # zeigt ausgeführte Migrationen
 ```
 
-Mit fertigem Image (`FILUM_IMAGE` in `.env`, siehe [installation.md](installation.md#ohne-eigenes-build)) statt `git pull` und `--build`: `docker compose pull && docker compose up -d`. Für den Rückweg vorher die laufende Version notieren (`docker compose images`) und `FILUM_IMAGE` auf genau diese Version setzen.
+Mit fertigem Image (`FILUM_IMAGE` in `.env`, siehe [installation.md](13-installation.md#ohne-eigenes-build)) statt `git pull` und `--build`: `docker compose pull && docker compose up -d`. Für den Rückweg vorher die laufende Version notieren (`docker compose images`) und `FILUM_IMAGE` auf genau diese Version setzen.
 
 Was dabei passiert:
 
@@ -177,3 +179,7 @@ filum health                   beide Dienste über /healthz prüfen
 ```
 
 `backups`, `verify`, `setup-code` und `integrity` lesen nur und verändern die Datenbank nicht (keine Migration). Sie funktionieren daher auch mit `docker compose run --rm --no-deps filum filum …`, wenn Filum selbst nicht startet.
+
+---
+
+Weiter: [19 — REST-API](19-rest-api.md) · [Zur Übersicht](README.md)

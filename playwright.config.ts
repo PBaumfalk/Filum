@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
  *   FILUM_URL     Verwaltung, Standard http://localhost:8081
  *   FILUM_PUBLIC  Öffentlicher Port, Standard http://localhost:8080
  *   FILUM_SETUP_CODE  Einrichtungscode, falls die Instanz frisch ist
- * Siehe docs/tests.md.
+ * Siehe docs/handbuch/22-tests.md.
  */
 export default defineConfig({
   testDir: './e2e',

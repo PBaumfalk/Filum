@@ -1,4 +1,6 @@
-# Architektur
+# 21 — Architektur (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 ## Überblick
 
@@ -39,7 +41,7 @@
 | Suche | SQLite FTS5 mit Trigramm-Tokenizer | Teilwortsuche in Kurzadresse, Ziel, Titel, Notiz und Schlagwörtern, auch bei großen Beständen schnell. |
 | Oberfläche | React 19, TanStack Query, React Router, eigenes CSS-Designsystem | Keine Komponentenbibliothek: eigene Gestaltung, kleine Abhängigkeitsliste. Diagramme als eigenes SVG. |
 | Validierung | zod (API), eigene Prüfer für URL/Slug/Host | Eine Wahrheit für Oberfläche, API und Import. |
-| Abrufe fremder Seiten | eigener SSRF-geschützter Abruf mit undici und festgenagelter IP | Siehe [sicherheit.md](sicherheit.md). |
+| Abrufe fremder Seiten | eigener SSRF-geschützter Abruf mit undici und festgenagelter IP | Siehe [sicherheit.md](20-sicherheit.md). |
 | Auslieferung | Ein Image, mehrstufiger Build, `node:24-bookworm-slim`, amd64/arm64 | Einfach zu betreiben und zu sichern. |
 
 ## Datenmodell (Auszug)
@@ -82,3 +84,7 @@ e2e/               Browser-Tests (Playwright)
 scripts/           Build, E2E-Lauf, Docker-Lebenszyklus-Test
 docs/              Dokumentation
 ```
+
+---
+
+Weiter: [22 — Tests und Qualitätssicherung](22-tests.md) · [Zur Übersicht](README.md)

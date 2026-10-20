@@ -1,4 +1,6 @@
-# Sicherung und Wiederherstellung
+# 17 — Sicherung und Wiederherstellung (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 Eine Filum-Sicherung ist **eine einzige Datei** (SQLite-Datenbank) mit allem: Links, Domains, Konten, API-Tokens (als Prüfsummen), Einstellungen, Kampagnen, Statistik und Protokoll. Sie entsteht im laufenden Betrieb über die Online-Backup-Schnittstelle von SQLite und ist in sich konsistent. Filum prüft jede neue Sicherung sofort (`integrity_check`, Schemaversion, Tabellen).
 
@@ -99,7 +101,7 @@ Die hochkopierte Datei bleibt sonst neben der Datenbank liegen und wird bei jede
 
 ### Variante C: Umzug auf einen neuen Server
 
-1. Filum auf dem neuen Server installieren ([installation.md](installation.md)) und starten.
+1. Filum auf dem neuen Server installieren ([installation.md](13-installation.md)) und starten.
 2. Ohne Ersteinrichtung direkt Variante B ausführen. Danach gelten die Konten aus der Sicherung.
 3. DNS bzw. Proxy auf den neuen Server umstellen.
 
@@ -118,3 +120,7 @@ docker compose exec filum filum reset-password admin@firma.de
 ```
 
 Alle Sitzungen des Kontos werden dabei beendet.
+
+---
+
+Weiter: [18 — Betrieb und Updates](18-betrieb.md) · [Zur Übersicht](README.md)

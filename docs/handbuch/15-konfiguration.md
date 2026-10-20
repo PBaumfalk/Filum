@@ -1,4 +1,6 @@
-# Konfiguration
+# 15 — Konfiguration (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 Filum liest seine Grundeinstellungen aus Umgebungsvariablen (in Docker Compose aus der Datei `.env`). Alles, was sich im laufenden Betrieb ändern lässt (Statistikmodus, Sperrliste, Zeitzone …), stellen Admins in der Oberfläche unter **Einstellungen** ein. Diese Werte liegen in der Datenbank und sind Teil jeder Sicherung.
 
@@ -19,13 +21,13 @@ Filum prüft die Werte beim Start streng und startet bei einem Fehler nicht, sta
 | `PUBLIC_PORT` | `8080` | Port des öffentlichen Weiterleitungsdienstes im Container. |
 | `ADMIN_PORT` | `8081` | Port von Oberfläche und API im Container. |
 | `HOST` | `0.0.0.0` | Bind-Adresse im Container. |
-| `TRUST_PROXY` | `loopback,linklocal,uniquelocal` | Welchen Proxys Filum `X-Forwarded-*` glaubt. Kommagetrennte Adressen/Netze, `true` (allen – nur hinter einem Proxy!) oder `false`. Empfohlen: genau die Proxy-Adresse oder das Subnetz des gemeinsamen Docker-Netzes; ohne Proxy (`PUBLIC_BIND=0.0.0.0`) `false`. Siehe [reverse-proxy.md](reverse-proxy.md#echte-absender-adresse-trust_proxy). |
+| `TRUST_PROXY` | `loopback,linklocal,uniquelocal` | Welchen Proxys Filum `X-Forwarded-*` glaubt. Kommagetrennte Adressen/Netze, `true` (allen – nur hinter einem Proxy!) oder `false`. Empfohlen: genau die Proxy-Adresse oder das Subnetz des gemeinsamen Docker-Netzes; ohne Proxy (`PUBLIC_BIND=0.0.0.0`) `false`. Siehe [reverse-proxy.md](14-reverse-proxy.md#echte-absender-adresse-trust_proxy). |
 | `STRICT_ADMIN_HOST` | `false` | `true`: Port 8081 antwortet nur unter dem Hostnamen aus `APP_URL` (und `localhost` für den Healthcheck). |
 | `SECURE_COOKIES` | aus `APP_URL` abgeleitet | Erzwingt `Secure`-Cookies (`true`) oder schaltet sie ab (`false`, nur für reine HTTP-Testumgebungen). |
 | `LOG_LEVEL` | `info` | `fatal`, `error`, `warn`, `info`, `debug`, `trace` oder `silent`. Logs sind JSON auf stdout, Zeitstempel in UTC. Andere Werte verhindern den Start. |
 | `SETUP_CODE` | zufällig | Einrichtungscode für das erste Konto selbst festlegen (z. B. für automatisierte Installationen). Ohne Wirkung, sobald ein Konto existiert. |
 | `FILUM_VERSION` | Version aus `package.json` | Angezeigte Versionsbezeichnung (Einstellungen → System, Startmeldung im Log). Nur setzen, wenn Sie eigene Builds kennzeichnen wollen, z. B. `1.0.0-firma.2`. |
-| `NODE_EXTRA_CA_CERTS` | – | Pfad zu einer PEM-Datei mit zusätzlichen Zertifizierungsstellen, denen Filum bei ausgehenden HTTPS-Abrufen vertraut (OIDC, Tessera, Domainprüfung, Vorschau). Für interne CAs, Beispiel in [reverse-proxy.md](reverse-proxy.md#interne-zertifizierungsstelle-auch-für-filum). |
+| `NODE_EXTRA_CA_CERTS` | – | Pfad zu einer PEM-Datei mit zusätzlichen Zertifizierungsstellen, denen Filum bei ausgehenden HTTPS-Abrufen vertraut (OIDC, Tessera, Domainprüfung, Vorschau). Für interne CAs, Beispiel in [reverse-proxy.md](14-reverse-proxy.md#interne-zertifizierungsstelle-auch-für-filum). |
 
 ## Docker Compose (nur `docker-compose.yml`)
 
@@ -54,11 +56,11 @@ Filum prüft die Werte beim Start streng und startet bei einem Fehler nicht, sta
 | `OIDC_BUTTON_LABEL` | `Mit Firmenkonto anmelden` | Beschriftung der Schaltfläche. |
 | `DISABLE_LOCAL_LOGIN` | `false` | `true`: nur noch Anmeldung über OIDC. Die Ersteinrichtung funktioniert trotzdem. |
 
-Die Rolle wird bei jeder Anmeldung aus den Gruppen neu bestimmt, wenn eine Gruppe passt. Einrichtung in authentik: [oidc-authentik.md](oidc-authentik.md).
+Die Rolle wird bei jeder Anmeldung aus den Gruppen neu bestimmt, wenn eine Gruppe passt. Einrichtung in authentik: [oidc-authentik.md](16-anmeldung-oidc.md).
 
 ## Vorschau und Zielprüfung
 
-Filum ruft Zieladressen ab, um Titel und Vorschaubild zu lesen und regelmäßig zu prüfen, ob das Ziel noch erreichbar ist. Diese Abrufe sind gegen Server-Side Request Forgery geschützt: Interne Netze, Loopback und Cloud-Metadaten werden nie abgerufen (Details: [sicherheit.md](sicherheit.md)).
+Filum ruft Zieladressen ab, um Titel und Vorschaubild zu lesen und regelmäßig zu prüfen, ob das Ziel noch erreichbar ist. Diese Abrufe sind gegen Server-Side Request Forgery geschützt: Interne Netze, Loopback und Cloud-Metadaten werden nie abgerufen (Details: [sicherheit.md](20-sicherheit.md)).
 
 | Variable | Standard | Bedeutung |
 | --- | --- | --- |
@@ -66,7 +68,7 @@ Filum ruft Zieladressen ab, um Titel und Vorschaubild zu lesen und regelmäßig 
 | `FETCH_ALLOW_PRIVATE` | `false` | `true`: private Netze (10/8, 172.16/12, 192.168/16, 100.64/10, fc00::/7) dürfen abgerufen werden. Loopback, Link-Local und Metadaten bleiben gesperrt. |
 | `FETCH_TIMEOUT_MS` | `6000` | Zeitlimit je Abruf. |
 | `FETCH_USER_AGENT` | `Filum-Linkpruefung/1.0 (+self-hosted)` | User-Agent der Abrufe. |
-| `HEALTH_CHECK_INTERVAL_MIN` | `360` | Wie oft jedes Ziel geprüft wird (Minuten, mindestens 15). `0` schaltet die Prüfung ab, z. B. auf Servern ohne Internetzugang (Filum unterstützt keinen ausgehenden HTTP-Proxy, siehe [betrieb.md](betrieb.md#ohne-internetzugang)). |
+| `HEALTH_CHECK_INTERVAL_MIN` | `360` | Wie oft jedes Ziel geprüft wird (Minuten, mindestens 15). `0` schaltet die Prüfung ab, z. B. auf Servern ohne Internetzugang (Filum unterstützt keinen ausgehenden HTTP-Proxy, siehe [betrieb.md](18-betrieb.md#ohne-internetzugang)). |
 
 ## Sicherungen
 
@@ -82,4 +84,8 @@ Filum ruft Zieladressen ab, um Titel und Vorschaubild zu lesen und regelmäßig 
 | `TESSERA_URL` | – | Adresse des QR-Studios Tessera, z. B. `https://qr.intranet.firma.de`. |
 | `TESSERA_TOKEN` | – | API-Token aus Tessera (Rolle *Bearbeiten*). |
 
-Ohne diese Werte funktioniert alles; nur die Schaltfläche „In Tessera gestalten“ fehlt. Siehe [tessera.md](tessera.md).
+Ohne diese Werte funktioniert alles; nur die Schaltfläche „In Tessera gestalten“ fehlt. Siehe [tessera.md](07-qr-codes.md).
+
+---
+
+Weiter: [16 — Anmeldung über authentik (OIDC)](16-anmeldung-oidc.md) · [Zur Übersicht](README.md)

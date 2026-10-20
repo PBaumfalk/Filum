@@ -2,7 +2,7 @@ import path from 'node:path';
 
 /**
  * Zentrale Konfiguration aus Umgebungsvariablen.
- * Jede Variable ist in docs/konfiguration.md beschrieben.
+ * Jede Variable ist in docs/handbuch/15-konfiguration.md beschrieben.
  */
 
 function str(name: string, fallback = ''): string {
@@ -154,7 +154,7 @@ export function loadConfig(): Config {
       token: str('TESSERA_TOKEN'),
     },
     // Angezeigte Version (Einstellungen → System, Log). Standard: Version aus package.json, beim Build eingesetzt.
-    version: str('FILUM_VERSION', process.env.FILUM_BUILD_VERSION ?? '1.0.0'),
+    version: str('FILUM_VERSION', process.env.FILUM_BUILD_VERSION ?? '1.1.0'),
   };
 }
 

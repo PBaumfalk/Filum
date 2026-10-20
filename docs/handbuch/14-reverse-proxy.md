@@ -1,4 +1,6 @@
-# Reverse Proxy, HTTPS und Trennung von Verwaltung und Weiterleitung
+# 14 — Reverse Proxy, HTTPS und Trennung (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 ## Das Prinzip: zwei Ports, zwei Welten
 
@@ -250,3 +252,7 @@ curl -I https://go.firma.de/api/v1/session      # erwartet: 404, keine JSON-Antw
 curl -I https://go.firma.de/einstellungen        # erwartet: 404
 curl -I https://filum.intranet.firma.de/healthz  # aus dem Internet: nicht erreichbar
 ```
+
+---
+
+Weiter: [15 — Konfiguration](15-konfiguration.md) · [Zur Übersicht](README.md)

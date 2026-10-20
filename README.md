@@ -39,33 +39,22 @@ docker compose logs filum     # Einrichtungscode ablesen
 
 Ohne eigenes Bauen: in `.env` `FILUM_IMAGE=ghcr.io/pbaumfalk/filum:1` setzen und `docker compose up -d` (ohne `--build`) aufrufen. Fertige Images für amd64 und arm64 entstehen bei jedem Release.
 
-Dann `APP_URL` im Browser öffnen, Einrichtungscode eingeben, erstes Konto anlegen. Ausführlich: [docs/installation.md](docs/installation.md).
+Dann `APP_URL` im Browser öffnen, Einrichtungscode eingeben, erstes Konto anlegen. Ausführlich: [Handbuch, Kapitel 13](docs/handbuch/13-installation.md).
 
 | Port | Inhalt | Proxy-Ziel für |
 | --- | --- | --- |
 | 8080 | nur Kurzlink-Weiterleitungen | Kurzlink-Domains, z. B. `go.firma.de` |
 | 8081 | Oberfläche und API | Verwaltungsadresse, z. B. `filum.intranet.firma.de` (nur intern) |
 
-## Dokumentation
+## 📖 Handbuch
 
-| Thema | Datei |
-| --- | --- |
-| Installation | [docs/installation.md](docs/installation.md) |
-| Reverse Proxy, HTTPS, Trennung | [docs/reverse-proxy.md](docs/reverse-proxy.md) |
-| Alle Umgebungsvariablen | [docs/konfiguration.md](docs/konfiguration.md) |
-| Domains und Besitznachweis | [docs/domains.md](docs/domains.md) |
-| Anmeldung über authentik | [docs/oidc-authentik.md](docs/oidc-authentik.md) |
-| Sicherung und Wiederherstellung | [docs/sicherung.md](docs/sicherung.md) |
-| Betrieb, Updates, Kommandozeile | [docs/betrieb.md](docs/betrieb.md) |
-| Handbuch für Anwender | [docs/handbuch.md](docs/handbuch.md) |
-| API | [docs/api.md](docs/api.md) und `/api/v1/openapi.json` |
-| Datenschutz | [docs/datenschutz.md](docs/datenschutz.md) |
-| Sicherheitskonzept | [docs/sicherheit.md](docs/sicherheit.md) |
-| Tessera | [docs/tessera.md](docs/tessera.md) |
-| Architektur | [docs/architektur.md](docs/architektur.md) |
-| Änderungen je Version | [CHANGELOG.md](CHANGELOG.md) |
-| Tests und Qualitätssicherung | [docs/tests.md](docs/tests.md) |
-| Bekannte Einschränkungen | [docs/einschraenkungen.md](docs/einschraenkungen.md) |
+Die vollständige Dokumentation, verständlich für Anwenderinnen und Anwender wie für die IT, steht im **[Handbuch](docs/handbuch/README.md)**, in 23 Kapiteln mit Bildschirmfotos:
+
+- **Arbeiten mit Filum:** [Was ist Filum?](docs/handbuch/01-was-ist-filum.md) · [Erste Schritte](docs/handbuch/02-erste-schritte.md) · [Links anlegen](docs/handbuch/03-links-anlegen.md) · [Links finden und bearbeiten](docs/handbuch/04-links-verwalten.md) · [Zeitplan, Schutz und Regeln](docs/handbuch/05-zeitplan-schutz-regeln.md) · [Kampagnen](docs/handbuch/06-kampagnen-sammlungen.md) · [QR-Codes](docs/handbuch/07-qr-codes.md) · [Analyse](docs/handbuch/08-analyse.md)
+- **Administration:** [Domains](docs/handbuch/09-domains.md) · [Team und Rechte](docs/handbuch/10-team-und-rechte.md) · [Einstellungen](docs/handbuch/11-einstellungen.md) · [Datenschutz](docs/handbuch/12-datenschutz.md)
+- **Installation und Betrieb:** [Installation](docs/handbuch/13-installation.md) · [Reverse Proxy](docs/handbuch/14-reverse-proxy.md) · [Konfiguration](docs/handbuch/15-konfiguration.md) · [OIDC](docs/handbuch/16-anmeldung-oidc.md) · [Sicherung](docs/handbuch/17-sicherung.md) · [Betrieb und Updates](docs/handbuch/18-betrieb.md) · [REST-API](docs/handbuch/19-rest-api.md) · [Sicherheit](docs/handbuch/20-sicherheit.md) · [Architektur](docs/handbuch/21-architektur.md) · [Tests](docs/handbuch/22-tests.md) · [Einschränkungen](docs/handbuch/23-einschraenkungen.md)
+
+Änderungen je Version: [CHANGELOG.md](CHANGELOG.md). Die API beschreibt sich selbst unter `/api/v1/openapi.json`.
 
 ## Entwicklung
 
@@ -76,6 +65,7 @@ npm run dev:web      # Oberfläche mit Hot Reload auf 5173
 npm test             # Server-Tests (vitest)
 npm run typecheck
 scripts/e2e-local.sh # Browser-Tests gegen frischen Build
+npm run docs:check   # Links und Anker in README und Handbuch prüfen
 scripts/docker-lifecycle-test.sh   # Container: Persistenz, Sicherung, Wiederherstellung (eigene Testkonfiguration, nutzt nicht .env)
 ```
 
@@ -87,7 +77,7 @@ Für `dev:server` die Ports setzen: `PUBLIC_PORT=18080 ADMIN_PORT=18081 APP_URL=
 | --- | --- |
 | ![Analyse](docs/screenshots/analyse.png) | ![Domains](docs/screenshots/domains.png) |
 
-Neu erzeugen mit Beispieldaten: `npm run build && node scripts/screenshots.mjs`.
+Neu erzeugen mit Beispieldaten: `npm run docs:screenshots`.
 
 ## Lizenz
 

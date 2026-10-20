@@ -16,7 +16,7 @@ RUN npm run build && npm prune --omit=dev --no-audit --no-fund \
   && node -e "new (require('better-sqlite3'))(':memory:').prepare('select 1').get()"
 
 FROM node:24-bookworm-slim
-ARG FILUM_VERSION=1.0.0
+ARG FILUM_VERSION=1.1.0
 ARG FILUM_SOURCE=""
 LABEL org.opencontainers.image.title="Filum" \
       org.opencontainers.image.description="Selbst gehostetes Link-Management-Studio: Kurzlinks, eigene Domains, datensparsame Statistik" \

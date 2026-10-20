@@ -90,7 +90,7 @@ export async function buildAdminServer(ctx: Ctx) {
         .type('text/plain; charset=utf-8')
         .send(
           `Diese Adresse (${host}) ist eine Kurzlink-Domain und wird vom Verwaltungsdienst nicht beantwortet.\n` +
-            'Bitte im Reverse Proxy die Kurzlink-Domain auf den öffentlichen Port (8080) leiten, siehe docs/reverse-proxy.md.',
+            'Bitte im Reverse Proxy die Kurzlink-Domain auf den öffentlichen Port (8080) leiten, siehe docs/handbuch/14-reverse-proxy.md.',
         );
       return reply;
     }

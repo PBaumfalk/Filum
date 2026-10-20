@@ -1,6 +1,6 @@
 {
   "name": "filum",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Filum – selbst gehostetes Link-Management-Studio",
   "private": true,
   "license": "MIT",
@@ -17,7 +17,9 @@
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.web.json",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "cli": "tsx src/server/cli.ts"
+    "cli": "tsx src/server/cli.ts",
+    "docs:check": "node scripts/check-docs.mjs",
+    "docs:screenshots": "npm run build && node scripts/screenshots.mjs"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.2",

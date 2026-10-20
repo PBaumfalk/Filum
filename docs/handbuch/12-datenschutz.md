@@ -1,4 +1,4 @@
-# Datenschutz
+# 12 — Datenschutz
 
 Filum ist so gebaut, dass die eigentliche Aufgabe, eine Weiterleitung, **keinerlei personenbezogene Daten** braucht und speichert. Die Statistik besteht nur aus Summen.
 
@@ -47,3 +47,7 @@ Unter **Einstellungen → Datenschutz** erzeugt Filum einen Formulierungsvorschl
 ## Bewertung
 
 Im Modus „Grundstatistik“ und „Aus“ verarbeitet Filum über die Weiterleitung hinaus keine personenbezogenen Daten dauerhaft. Die kurzzeitige Verarbeitung der IP-Adresse im Arbeitsspeicher dient der Sicherheit des Dienstes (berechtigtes Interesse). Der Modus „Erweitert“ speichert ausschließlich aggregierte Kategorien ohne Personenbezug. Ob dafür eine Information der Betroffenen nötig ist, sollte die verantwortliche Stelle im Einzelfall prüfen. Der Textbaustein deckt diesen Fall ab.
+
+---
+
+Weiter: [13 — Installation](13-installation.md) · [Zur Übersicht](README.md)

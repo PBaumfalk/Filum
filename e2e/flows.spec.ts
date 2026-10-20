@@ -201,6 +201,22 @@ test('Domain-Verwaltung: hinzufügen, Proxy-Bausteine, Standard wechseln', async
   expect(res.status()).toBe(302);
   // Auf der Standarddomain existiert der Slug nicht
   expect((await pub.get(`/${slug}`)).status()).toBe(404);
+
+  // Mehrfachauswahl: zwei Links der Standarddomain auf die neue Domain verschieben (mit Bestätigung)
+  const tag = uniq('umzug');
+  const moved = [uniq('mv'), uniq('mv')];
+  for (const s of moved) await apiPost(page, '/api/v1/links', { url: `https://www.example.org/${s}`, slug: s, tags: [tag] });
+  await page.goto(`/?q=${tag}`);
+  for (const s of moved) await page.getByLabel(`${s} auswählen`).click();
+  await page.getByRole('toolbar', { name: 'Aktionen für die Auswahl' }).getByRole('button', { name: 'Domain' }).click();
+  await page.getByRole('menuitem', { name: host }).click();
+  await page.getByRole('button', { name: `2 nach ${host} verschieben` }).click();
+  await expect(page.getByText(`Nach ${host} verschoben: 2 Links`)).toBeVisible();
+  for (const s of moved) {
+    expect((await pub.get(`/${s}`, { headers: { host } })).status()).toBe(302);
+    // Die alte Adresse leitet nicht mehr weiter und bleibt reserviert
+    expect((await pub.get(`/${s}`)).status()).not.toBe(302);
+  }
   await apiPatch(page, `/api/v1/domains/${d.id}`, { status: 'disabled' });
 });
 

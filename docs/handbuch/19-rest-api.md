@@ -1,4 +1,6 @@
-# API
+# 19 — REST-API (IT)
+
+> Dieses Kapitel richtet sich an die IT bzw. an Administratoren des Servers.
 
 Die vollständige, maschinenlesbare Beschreibung liefert Filum selbst: `GET /api/v1/openapi.json` (OpenAPI 3.1). In der Oberfläche steht sie unter **API** mit Beispielen. Ein Test stellt sicher, dass jede Route der API dort beschrieben ist.
 
@@ -64,3 +66,7 @@ curl -s -X DELETE -H "Authorization: Bearer $T" $A/api/v1/links/42
 ## Weiterleitung und API sind getrennt
 
 Kurzlinks laufen über die Kurzlink-Domains (Port 8080), die API nur über die Verwaltungsadresse (Port 8081). Dieselben Prüfungen (Zieladresse, Sperrliste, Rollen) gelten für Oberfläche, API und Import, weil alle denselben Dienst im Server verwenden.
+
+---
+
+Weiter: [20 — Sicherheitskonzept](20-sicherheit.md) · [Zur Übersicht](README.md)
